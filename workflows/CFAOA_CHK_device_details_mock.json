@@ -1,0 +1,1320 @@
+{
+  "name": "CFAOA:CHK:device_details_mock",
+  "tasks": {
+    "3482": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Data Using 'json-query' Format",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "playbook_name",
+          "obj": "$var.41e9.job_details"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -1.540983606557377,
+      "y": 0.30861723446893785,
+      "scheduled": false
+    },
+    "4877": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Get stderr",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "IAPerror.raw_response.response",
+          "obj": "$var.job.playbook_error"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -0.11124121779859485,
+      "y": 0.44148936170212766,
+      "scheduled": false
+    },
+    "8637": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "response",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "output",
+              "value": {
+                "task": "3ce4",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "error",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            },
+            {
+              "key": "result",
+              "value": {
+                "task": "static",
+                "variable": "SUCCESS"
+              }
+            },
+            {
+              "key": "error_occured",
+              "value": {
+                "task": "static",
+                "variable": false
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 0.4566744730679157,
+      "y": -0.2925531914893617
+    },
+    "9204": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "error_str",
+          "value": []
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": -2.9543325526932085,
+      "y": 0.3226452905811623
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -4.174473067915691,
+      "y": 0.3286573146292585
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 1.4754098360655739,
+      "y": 0.27054108216432865
+    },
+    "3ce4": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Get stdout",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "response[0].results.stdout",
+          "obj": "$var.8d1d.result"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -0.09601873536299765,
+      "y": -0.2641843971631206,
+      "scheduled": false
+    },
+    "badc": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "device_host",
+          "value": []
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": -3.36768149882904,
+      "y": 0.3166332665330661
+    },
+    "3b6e": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "input push",
+      "description": "Adds one element to the end of an array and returns the (newly modified) array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.badc.value",
+          "elementN": "$var.job.device"
+        },
+        "outgoing": {
+          "pushedArray": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>push</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.9437939110070258,
+      "y": 0.29458917835671344,
+      "scheduled": false
+    },
+    "9d8": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "error-response",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "output",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            },
+            {
+              "key": "error",
+              "value": {
+                "task": "4877",
+                "variable": "return_data"
+              }
+            },
+            {
+              "key": "result",
+              "value": {
+                "task": "static",
+                "variable": "ERROR"
+              }
+            },
+            {
+              "key": "error_occured",
+              "value": {
+                "task": "static",
+                "variable": true
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 0.5,
+      "y": 0.4166666666666667
+    },
+    "d67f": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Is Playbook execution SUCCESS?",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": true,
+              "evaluations": [
+                {
+                  "query": "response[0].status",
+                  "operand_1": {
+                    "variable": "result",
+                    "task": "8d1d"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "SUCCESS",
+                    "task": "static"
+                  }
+                },
+                {
+                  "query": "icode",
+                  "operand_1": {
+                    "variable": "result",
+                    "task": "8d1d"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "AD.200",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": -0.30679156908665106,
+      "y": 0.04208416833667335
+    },
+    "389b": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "failure-response",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "output",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            },
+            {
+              "key": "error",
+              "value": {
+                "task": "8d1d",
+                "variable": "result"
+              }
+            },
+            {
+              "key": "result",
+              "value": {
+                "task": "static",
+                "variable": "FAILURE"
+              }
+            },
+            {
+              "key": "error_occured",
+              "value": {
+                "task": "static",
+                "variable": true
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 0.48003629764065336,
+      "y": 0.0035460992907801418
+    },
+    "8bb3": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "check_result",
+          "value": "$var.8637.merged_object"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": 0.6861826697892272,
+      "y": -0.29432624113475175
+    },
+    "cc0b": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "check_result",
+          "value": "$var.389b.merged_object"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": 0.702576112412178,
+      "y": 0.030141843971631204
+    },
+    "3bf8": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "check_result",
+          "value": "$var.9d8.merged_object"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": 0.734192037470726,
+      "y": 0.4095744680851064
+    },
+    "8d1d": {
+      "name": "runPlaybook",
+      "canvasName": "runPlaybook",
+      "summary": "RunPlaybook",
+      "description": "This method will run a playbook in Automation Gateway",
+      "location": "Adapter",
+      "locationType": "AutomationGateway",
+      "app": "AutomationGateway",
+      "type": "automatic",
+      "displayName": "AutomationGateway",
+      "variables": {
+        "incoming": {
+          "playbookName": "$var.3482.return_data",
+          "hosts": "$var.3b6e.pushedArray",
+          "groups": "",
+          "args": "",
+          "template": "",
+          "adapter_id": "IAG_MH_NETWORK01-1"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "$var.job.playbook_error",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>runPlaybook</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.6463700234192038,
+      "y": 0.3106212424849699,
+      "scheduled": false
+    },
+    "655b": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "check_result",
+          "value": {
+            "output": {},
+            "error": {},
+            "result": "UNKNOWN",
+            "error_occured": true
+          }
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": -2.5843091334894615,
+      "y": 0.30861723446893785
+    },
+    "41e9": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "LookupPlaybook",
+      "description": "LookupPlaybook",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "CFA:LookupPlaybookForDeviceModel",
+          "variables": {
+            "device_model": {
+              "variable": "",
+              "task": "job",
+              "editable": true,
+              "value": "device_model"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>childJob</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "job",
+      "x": -1.9789227166276346,
+      "y": 0.312625250501002
+    },
+    "f223": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Run Evaluation Task",
+      "description": "Run an evaluation",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "return_data",
+                    "task": "3482"
+                  },
+                  "operator": "!contains",
+                  "operand_2": {
+                    "variable": "unknown",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": -1.2142857142857142,
+      "y": 0.3066132264529058
+    },
+    "cbfb": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "check_result",
+          "value": {
+            "output": {},
+            "error": "Unsupported device model",
+            "result": "ERROR",
+            "error_occured": true
+          }
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": -1.4695550351288056,
+      "y": 1.7294589178356714
+    },
+    "df6a": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "mock_run",
+          "value": true
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": -3.8442622950819674,
+      "y": 0.3166332665330661
+    },
+    "bafa": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "mock_response",
+      "description": "Merge data into a single object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "output",
+              "value": {
+                "task": "2ca9",
+                "variable": "value"
+              }
+            },
+            {
+              "key": "error",
+              "value": {
+                "task": "static",
+                "variable": ""
+              }
+            },
+            {
+              "key": "result",
+              "value": {
+                "task": "static",
+                "variable": "SUCCESS"
+              }
+            },
+            {
+              "key": "error_occured",
+              "value": {
+                "task": "static",
+                "variable": false
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": -1.2915690866510539,
+      "y": -0.5170340681362725
+    },
+    "da5e": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "check_result",
+          "value": "$var.bafa.merged_object"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": 0.6264637002341921,
+      "y": -0.5450901803607214
+    },
+    "8cb0": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Is Mock Run?",
+      "description": "Eval: is Mock Run?",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "value",
+                    "task": "df6a"
+                  },
+                  "operator": "contains",
+                  "operand_2": {
+                    "variable": false,
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": -2.282201405152225,
+      "y": 0.3026052104208417
+    },
+    "2ca9": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "mock_stdout_data",
+          "value": [
+            "CPU utilization for five seconds: 6%/1%; one minute: 5%; five minutes: 5%",
+            "Processor Pool Total: 4374072120 Used:  550425440 Free: 3823646680",
+            "GigabitEthernet0/0/0 is up, line protocol is up \n  Hardware is SPA-2X1GE-V2, address is 00fd.221d.d480 (bia 00fd.221d.d480)\n  Description: Outside Internet\n  Internet address is 63.128.108.245/29\n  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, \n     reliability 255/255, txload 9/255, rxload 28/255\n  Encapsulation ARPA, loopback not set\n  Keepalive not supported \n  Full Duplex, 1000Mbps, link type is auto, media type is RJ45\n  output flow-control is on, input flow-control is on\n  ARP type: ARPA, ARP Timeout 04:00:00\n  Last input 00:00:03, output 00:16:30, output hang never\n  Last clearing of \"show interface\" counters never\n  Input queue: 0/375/3434/0 (size/max/drops/flushes); Total output drops: 47891\n  Queueing strategy: Class-based queueing\n  Output queue: 0/40 (size/max)\n  5 minute input rate 113077000 bits/sec, 19857 packets/sec\n  5 minute output rate 37435000 bits/sec, 17500 packets/sec\n     846070387664 packets input, 638938650715000 bytes, 0 no buffer\n     Received 15853627 broadcasts (0 IP multicasts)\n     0 runts, 4 giants, 0 throttles \n     4 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored\n     0 watchdog, 3668275 multicast, 0 pause input\n     648102961824 packets output, 262768061419961 bytes, 0 underruns\n     0 output errors, 0 collisions, 1 interface resets\n     3668266 unknown protocol drops\n     0 babbles, 0 late collision, 0 deferred\n     0 lost carrier, 0 no carrier, 0 pause output\n     0 output buffer failures, 0 output buffers swapped out\nGigabitEthernet0/0/1 is up, line protocol is up \n  Hardware is SPA-2X1GE-V2, address is 00fd.221d.d481 (bia 00fd.221d.d481)\n  Description: LEAF-MANAGED-C-231.AT1:eth1/8\n  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, \n     reliability 255/255, txload 26/255, rxload 7/255\n  Encapsulation 802.1Q Virtual LAN, Vlan ID  1., loopback not set\n  Keepalive not supported \n  Full Duplex, 1000Mbps, link type is auto, media type is RJ45\n  output flow-control is on, input flow-control is on\n  ARP type: ARPA, ARP Timeout 04:00:00\n  Last input 00:00:00, output 00:04:22, output hang never\n  Last clearing of \"show interface\" counters never\n  Input queue: 0/375/500255/0 (size/max/drops/flushes); Total output drops: 0\n  Queueing strategy: fifo\n  Output queue: 0/40 (size/max)\n  5 minute input rate 29339000 bits/sec, 17458 packets/sec\n  5 minute output rate 103918000 bits/sec, 19753 packets/sec\n     660249694431 packets input, 231585419261589 bytes, 0 no buffer\n     Received 63624748 broadcasts (0 IP multicasts)\n     0 runts, 0 giants, 0 throttles \n     2 input errors, 1 CRC, 1 frame, 0 overrun, 0 ignored\n     0 watchdog, 7597406 multicast, 0 pause input\n     853177142077 packets output, 596696413743834 bytes, 0 underruns\n     0 output errors, 0 collisions, 6 interface resets\n     38801668 unknown protocol drops\n     0 babbles, 0 late collision, 0 deferred\n     0 lost carrier, 0 no carrier, 0 pause output\n     0 output buffer failures, 0 output buffers swapped out\nGigabitEthernet0/0/1.3139 is up, line protocol is up \n  Hardware is SPA-2X1GE-V2, address is 00fd.221d.d481 (bia 00fd.221d.d481)\n  Description: Fortigate Supply Transit\n  Internet address is 10.96.127.91/29\n  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, \n     reliability 255/255, txload 26/255, rxload 7/255\n  Encapsulation 802.1Q Virtual LAN, Vlan ID  3139.\n  ARP type: ARPA, ARP Timeout 04:00:00\n  Keepalive not supported \n  Last clearing of \"show interface\" counters never\nGigabitEthernet0/0/1.3600 is up, line protocol is up \n  Hardware is SPA-2X1GE-V2, address is 00fd.221d.d481 (bia 00fd.221d.d481)\n  Description: Fortigate Stores Transit\n  Internet address is 10.96.36.98/29\n  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, \n     reliability 255/255, txload 26/255, rxload 7/255\n  Encapsulation 802.1Q Virtual LAN, Vlan ID  3600.\n  ARP type: ARPA, ARP Timeout 04:00:00\n  Keepalive not supported \n  Last clearing of \"show interface\" counters never\nGigabitEthernet0 is up, line protocol is up \n  Hardware is RP management port, address is 00fd.221d.d500 (bia 00fd.221d.d500)\n  Internet address is 10.251.1.56/23\n  MTU 1500 bytes, BW 1000000 Kbit/sec, DLY 10 usec, \n     reliability 255/255, txload 1/255, rxload 1/255\n  Encapsulation ARPA, loopback not set\n  Keepalive set (10 sec)\n  Full Duplex, 1000Mbps, link type is auto, media type is RJ45\n  output flow-control is unsupported, input flow-control is unsupported\n  ARP type: ARPA, ARP Timeout 04:00:00\n  Last input 00:00:00, output 00:00:00, output hang never\n  Last clearing of \"show interface\" counters never\n  Input queue: 0/75/2445492/0 (size/max/drops/flushes); Total output drops: 0\n  Queueing strategy: fifo\n  Output queue: 0/40 (size/max)\n  5 minute input rate 32000 bits/sec, 38 packets/sec\n  5 minute output rate 0 bits/sec, 0 packets/sec\n     4203585791 packets input, 511105051880 bytes, 0 no buffer\n     Received 584767139 broadcasts (0 IP multicasts)\n     0 runts, 0 giants, 0 throttles \n     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored\n     0 watchdog, 0 multicast, 0 pause input\n     143339390 packets output, 28970792023 bytes, 0 underruns\n     0 output errors, 0 collisions, 0 interface resets\n     1222776 unknown protocol drops\n     0 babbles, 0 late collision, 0 deferred\n     2 lost carrier, 0 no carrier, 0 pause output\n     0 output buffer failures, 0 output buffers swapped out\nTunnel1 is up, line protocol is up \n  Hardware is Tunnel\n  Internet address is 10.96.79.1/24\n  MTU 9972 bytes, BW 100 Kbit/sec, DLY 50000 usec, \n     reliability 255/255, txload 10/255, rxload 20/255\n  Encapsulation TUNNEL, loopback not set\n  Keepalive not set\n  Tunnel linestate evaluation up\n  Tunnel source 63.128.108.245 (GigabitEthernet0/0/0)\n   Tunnel Subblocks:\n      src-track:\n         Tunnel1 source tracking subblock associated with GigabitEthernet0/0/0\n          Set of tunnels with source GigabitEthernet0/0/0, 1 member (includes iterators), on interface <OK>\n  Tunnel protocol/transport multi-GRE/IP\n    Key 0xB, sequencing disabled\n    Checksumming of packets disabled\n  Tunnel TTL 255, Fast tunneling enabled\n  Tunnel transport MTU 1472 bytes\n  Tunnel transmit bandwidth 8000 (kbps)\n  Tunnel receive bandwidth 8000 (kbps)\n  Tunnel protection via IPSec (profile \"DMVPN_PROFILE\")\n  Last input 00:00:22, output never, output hang never\n  Last clearing of \"show interface\" counters 1y30w\n  Input queue: 0/375/0/0 (size/max/drops/flushes); Total output drops: 0\n  Queueing strategy: fifo (QOS pre-classification)\n  Output queue: 0/0 (size/max)\n  5 minute input rate 8000 bits/sec, 13 packets/sec\n  5 minute output rate 4000 bits/sec, 8 packets/sec\n     759474945 packets input, 84692732779 bytes, 0 no buffer\n     Received 0 broadcasts (0 IP multicasts)\n     0 runts, 0 giants, 0 throttles \n     0 input errors, 0 CRC, 0 frame, 0 overrun, 0 ignored, 0 abort\n     491771262 packets output, 36863004240 bytes, 0 underruns\n     0 output errors, 0 collisions, 0 interface resets\n     30888 unknown protocol drops\n     0 output buffer failures, 0 output buffers swapped out",
+            "Cisco IOS XE Software, Version 16.06.06\nCisco IOS Software [Everest], ASR1000 Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.6.6, RELEASE SOFTWARE (fc1)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2019 by Cisco Systems, Inc.\nCompiled Thu 11-Apr-19 04:03 by mcpre\n\n\nCisco IOS-XE software, Copyright (c) 2005-2019 by cisco Systems, Inc.\nAll rights reserved.  Certain components of Cisco IOS-XE software are\nlicensed under the GNU General Public License (\"GPL\") Version 2.0.  The\nsoftware code licensed under GPL Version 2.0 is free software that comes\nwith ABSOLUTELY NO WARRANTY.  You can redistribute and/or modify such\nGPL code under the terms of GPL Version 2.0.  For more details, see the\ndocumentation or \"License Notice\" file accompanying the IOS-XE software,\nor the applicable URL provided on the flyer accompanying the IOS-XE\nsoftware.\n\n\nROM: IOS-XE ROMMON\n\nCHICK1-AT1-ASR1006-1 uptime is 2 years, 17 weeks, 5 hours, 26 minutes\nUptime for this control processor is 2 years, 17 weeks, 5 hours, 28 minutes\nSystem returned to ROM by reload at 10:21:36 EDT Mon Jul 15 2019\nSystem restarted at 18:28:08 EDT Mon Jul 15 2019\nSystem image file is \"bootflash:asr1000rpx86-universalk9.16.06.06.SPA.bin\"\nLast reload reason: Reload Command\n\n\n\nThis product contains cryptographic features and is subject to United\nStates and local country laws governing import, export, transfer and\nuse. Delivery of Cisco cryptographic products does not imply\nthird-party authority to import, export, distribute or use encryption.\nImporters, exporters, distributors and users are responsible for\ncompliance with U.S. and local country laws. By using this product you\nagree to comply with applicable laws and regulations. If you are unable\nto comply with U.S. and local laws, return this product immediately.\n\nA summary of U.S. laws governing Cisco cryptographic products may be found at:\nhttp://www.cisco.com/wwl/export/crypto/tool/stqrg.html\n\nIf you require further assistance please contact us by sending email to\nexport@cisco.com.\n\nLicense Type: Permanent\nLicense Level: advipservices\nNext reload license Level: advipservices\n\ncisco ASR1006-X (RP3) processor (revision RP3) with 4271690K/24590K bytes of memory.\nProcessor board ID FXS2204Q3BN\n2 Gigabit Ethernet interfaces\n32768K bytes of non-volatile configuration memory.\n8388608K bytes of physical memory.\n7116799K bytes of eUSB flash at bootflash:.\n97620247K bytes of SATA hard disk at harddisk:.\n0K bytes of WebUI ODM Files at webui:.\n\nConfiguration register is 0x2102"
+          ]
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -2.2798594847775178,
+      "y": -0.5290581162324649
+    }
+  },
+  "transitions": {
+    "3482": {
+      "f223": {
+        "type": "standard",
+        "state": "success"
+      },
+      "cbfb": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "4877": {
+      "9d8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8637": {
+      "8bb3": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9204": {
+      "655b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "df6a": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "3ce4": {
+      "8637": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "badc": {
+      "9204": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3b6e": {
+      "8d1d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9d8": {
+      "3bf8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "cedd": {},
+    "d67f": {
+      "3ce4": {
+        "type": "standard",
+        "state": "success"
+      },
+      "389b": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "workflow_end": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "389b": {
+      "cc0b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8bb3": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "cc0b": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3bf8": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8d1d": {
+      "4877": {
+        "type": "standard",
+        "state": "error"
+      },
+      "d67f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "655b": {
+      "8cb0": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "41e9": {
+      "3482": {
+        "type": "standard",
+        "state": "success"
+      },
+      "cbfb": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "f223": {
+      "3b6e": {
+        "type": "standard",
+        "state": "success"
+      },
+      "cbfb": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "cbfb": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "df6a": {
+      "badc": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bafa": {
+      "da5e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "da5e": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8cb0": {
+      "2ca9": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "41e9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2ca9": {
+      "bafa": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "font_size": 12,
+  "created": "2021-12-27T13:46:49.826Z",
+  "created_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "createdVersion": "5.40.5-2021.1.52.0",
+  "last_updated": "2021-12-29T14:57:09.414Z",
+  "last_updated_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "lastUpdatedVersion": "5.40.5-2021.1.52.0",
+  "type": "automation",
+  "description": null,
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "device": {
+        "type": [
+          "array",
+          "string",
+          "boolean",
+          "integer",
+          "number",
+          "object"
+        ],
+        "title": "elementN",
+        "examples": [
+          "Device3"
+        ]
+      },
+      "device_model": {
+        "title": "str",
+        "type": "string",
+        "examples": [
+          "Hello World"
+        ]
+      }
+    },
+    "required": [
+      "device",
+      "device_model"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "device": {
+        "type": [
+          "array",
+          "string",
+          "boolean",
+          "integer",
+          "number",
+          "object"
+        ],
+        "title": "elementN",
+        "examples": [
+          "Device3"
+        ]
+      },
+      "device_model": {
+        "title": "str",
+        "type": "string",
+        "examples": [
+          "Hello World"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "playbook_error": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "error_str": {
+        "type": "array"
+      },
+      "device_host": {
+        "type": "array"
+      },
+      "check_result": {
+        "type": "object",
+        "properties": {
+          "output": {
+            "type": "object",
+            "properties": {}
+          },
+          "error": {
+            "type": "string"
+          },
+          "result": {
+            "type": "string"
+          },
+          "error_occured": {
+            "type": "boolean"
+          }
+        }
+      },
+      "mock_run": {
+        "type": "boolean"
+      },
+      "mock_stdout_data": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "preAutomationTime": 0,
+  "sla": 0,
+  "canvasVersion": 1,
+  "tags": [],
+  "groups": []
+}

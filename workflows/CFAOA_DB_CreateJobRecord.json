@@ -1,0 +1,487 @@
+{
+  "name": "CFAOA:DB:CreateJobRecord",
+  "tasks": {
+    "1582": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Get DB Adapter name",
+      "description": "Query: Get DB Adapter name",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "DatabaseAdapterName",
+          "obj": "$var.11b8.Properties"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -0.25878220140515223,
+      "y": 0.49498997995991983,
+      "scheduled": false
+    },
+    "7806": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Job Object",
+      "description": "Prepare Job Object",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "jobId",
+              "value": {
+                "task": "job",
+                "variable": "main_job_id"
+              }
+            },
+            {
+              "key": "jobCiRef",
+              "value": {
+                "task": "job",
+                "variable": "device"
+              }
+            },
+            {
+              "key": "status",
+              "value": {
+                "task": "static",
+                "variable": "STARTED"
+              }
+            },
+            {
+              "key": "result",
+              "value": {
+                "task": "static",
+                "variable": "WAITING"
+              }
+            },
+            {
+              "key": "jobInput",
+              "value": {
+                "task": "c315",
+                "variable": "stringified"
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 0.22950819672131148,
+      "y": 0.48897795591182364
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -0.9332552693208431,
+      "y": 0.5050100200400801
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 0.522248243559719,
+      "y": 1.160320641282565
+    },
+    "6cdd": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "ErrorHandler",
+      "description": "ErrorHandler",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": 0,
+          "response": "$var.job.job_error"
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>stub</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Stub</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>stub</span> for an automated task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.07611241217798595,
+      "y": 1.1523046092184368,
+      "scheduled": false
+    },
+    "af33": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "job_error",
+          "value": "Error in Create Job record"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.7353629976580797,
+      "y": 0.503006012024048
+    },
+    "810b": {
+      "name": "createJobRecordCFA",
+      "canvasName": "createJobRecordCFA",
+      "summary": "Create Job Record for for CFA",
+      "description": "Create Job Record for CFA",
+      "location": "Application",
+      "locationType": null,
+      "app": "CFALib",
+      "type": "automatic",
+      "displayName": "CFALib",
+      "variables": {
+        "incoming": {
+          "adapterName": "$var.1582.return_data",
+          "job": "$var.7806.merged_object"
+        },
+        "outgoing": {
+          "data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.5035128805620609,
+      "y": 0.48096192384769537,
+      "scheduled": false
+    },
+    "11b8": {
+      "name": "getProperties",
+      "canvasName": "getProperties",
+      "summary": "Get App Properties",
+      "description": "Get App properties",
+      "location": "Application",
+      "locationType": null,
+      "app": "CFALib",
+      "type": "automatic",
+      "displayName": "CFALib",
+      "variables": {
+        "incoming": {},
+        "outgoing": {
+          "Properties": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>getPr</span>operties"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.45433255269320844,
+      "y": 0.501002004008016
+    },
+    "c315": {
+      "name": "objectToString",
+      "canvasName": "toString",
+      "summary": "Flow Input to String",
+      "description": "Flow Input to String",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "value": "$var.job.main_job_input",
+          "replacer": "",
+          "space": 2
+        },
+        "outgoing": {
+          "stringified": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>toString</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.02107728337236534,
+      "y": 0.49298597194388777,
+      "scheduled": false
+    }
+  },
+  "transitions": {
+    "1582": {
+      "c315": {
+        "type": "standard",
+        "state": "success"
+      },
+      "6cdd": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "7806": {
+      "810b": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "af33": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "f949": {},
+    "6cdd": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "af33": {
+      "11b8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "810b": {
+      "6cdd": {
+        "type": "standard",
+        "state": "error"
+      },
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "11b8": {
+      "1582": {
+        "type": "standard",
+        "state": "success"
+      },
+      "6cdd": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "a05a": {},
+    "c315": {
+      "7806": {
+        "type": "standard",
+        "state": "success"
+      },
+      "6cdd": {
+        "type": "standard",
+        "state": "error"
+      }
+    }
+  },
+  "font_size": 12,
+  "created": "2021-11-16T14:02:51.109Z",
+  "created_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "createdVersion": "5.10.4-2020.1.62.0",
+  "last_updated": "2021-12-29T14:57:09.411Z",
+  "last_updated_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "lastUpdatedVersion": "5.40.5-2021.1.52.0",
+  "type": "automation",
+  "description": null,
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "main_job_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "device": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "main_job_input": {
+        "title": "value",
+        "type": [
+          "string",
+          "number",
+          "object",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          {
+            "a": "Hello",
+            "b": "World"
+          }
+        ]
+      }
+    },
+    "required": [
+      "main_job_id",
+      "device",
+      "main_job_input"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "main_job_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "device": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "main_job_input": {
+        "title": "value",
+        "type": [
+          "string",
+          "number",
+          "object",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          {
+            "a": "Hello",
+            "b": "World"
+          }
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "job_error": {
+        "type": "string"
+      }
+    }
+  },
+  "canvasVersion": 1,
+  "tags": [],
+  "groups": []
+}

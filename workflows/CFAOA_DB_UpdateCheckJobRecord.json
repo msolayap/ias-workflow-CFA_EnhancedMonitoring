@@ -1,0 +1,782 @@
+{
+  "name": "CFAOA:DB:UpdateCheckJobRecord",
+  "tasks": {
+    "4055": {
+      "name": "replace",
+      "canvasName": "replace",
+      "summary": "Prepare UPDATE - set Output",
+      "description": "Prepare UPDATE - set Output",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.9b2d.replacedString",
+          "substr": "/xxx_output_xxx/",
+          "newSubstr": "$var.9d6f.stringified"
+        },
+        "outgoing": {
+          "replacedString": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>replace</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Replace</span>s a string with another string."
+        },
+        {
+          "key": "description",
+          "highlightString": "Returns a new string with some or all matches of a pattern <span class='highlight-string'>replace</span>d by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match (function type not supported in workflow engine)."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.0129564193168434,
+      "y": 0.4547563805104408,
+      "scheduled": false
+    },
+    "7133": {
+      "name": "replace",
+      "canvasName": "replace",
+      "summary": "Prepare UPDATE - set Job ID",
+      "description": "Prepare INSERT - set Job ID",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.9e4d.value",
+          "substr": "/xxx_job_id_xxx/",
+          "newSubstr": "$var.job.main_job_id"
+        },
+        "outgoing": {
+          "replacedString": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>replace</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Replace</span>s a string with another string."
+        },
+        {
+          "key": "description",
+          "highlightString": "Returns a new string with some or all matches of a pattern <span class='highlight-string'>replace</span>d by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match (function type not supported in workflow engine)."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.33568904593639576,
+      "y": 0.4709976798143852,
+      "scheduled": false
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -1.3910482921083627,
+      "y": 0.4593967517401392
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 2.365135453474676,
+      "y": -1.9350348027842228
+    },
+    "9e4d": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "SQL_UPDATE_check_job_record",
+          "value": "UPDATE ops_check_results SET  status = 'xxx_status_xxx', result = 'xxx_result_xxx',  output = 'xxx_output_xxx', error = 'xxx_error_xxx', end_time =  CURRENT_TIMESTAMP,  last_updated = CURRENT_TIMESTAMP WHERE job_id =  'xxx_job_id_xxx'  AND check_id = xxx_check_id_xxx"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.7773851590106007,
+      "y": 0.46867749419953597
+    },
+    "9b2d": {
+      "name": "replace",
+      "canvasName": "replace",
+      "summary": "Prepare UPDATE - set check ID",
+      "description": "Prepare UPDATE - set check ID",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.7133.replacedString",
+          "substr": "/xxx_check_id_xxx/",
+          "newSubstr": "$var.job.check_id"
+        },
+        "outgoing": {
+          "replacedString": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>replace</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Replace</span>s a string with another string."
+        },
+        {
+          "key": "description",
+          "highlightString": "Returns a new string with some or all matches of a pattern <span class='highlight-string'>replace</span>d by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match (function type not supported in workflow engine)."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.6431095406360424,
+      "y": 0.4733178654292343,
+      "scheduled": false
+    },
+    "9d6f": {
+      "name": "objectToString",
+      "canvasName": "toString",
+      "summary": "Stringify the Job Output",
+      "description": "Stringify the Job Output",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "value": "$var.job.output",
+          "replacer": "",
+          "space": 4
+        },
+        "outgoing": {
+          "stringified": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>toString</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.4817432273262662,
+      "y": 0.48259860788863107,
+      "scheduled": false
+    },
+    "569b": {
+      "name": "objectToString",
+      "canvasName": "toString",
+      "summary": "Stringify the Job Error",
+      "description": "Stringify the Job Error",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "value": "$var.job.error",
+          "replacer": "",
+          "space": 4
+        },
+        "outgoing": {
+          "stringified": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>toString</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.21790341578327443,
+      "y": 0.48491879350348027,
+      "scheduled": false
+    },
+    "8e74": {
+      "name": "update",
+      "canvasName": "update",
+      "summary": "update item into MicrosoftSQL server.",
+      "description": "update item into MicrosoftSQL server.",
+      "location": "Adapter",
+      "locationType": "MicrosoftSQL",
+      "app": "MicrosoftSQL",
+      "type": "automatic",
+      "displayName": "MicrosoftSQL",
+      "variables": {
+        "incoming": {
+          "sql": "$var.e57.replacedString",
+          "adapter_id": "MSSQL-DB1"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>update</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>update</span> item into MicrosoftSQL server."
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>update</span> item into MicrosoftSQL server."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 2.4087161366313308,
+      "y": 0.48491879350348027,
+      "scheduled": false
+    },
+    "91e6": {
+      "name": "replace",
+      "canvasName": "replace",
+      "summary": "Prepare UPDATE - set Status",
+      "description": "Prepare UPDATE - set Status",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.de90.replacedString",
+          "substr": "/xxx_status_xxx/",
+          "newSubstr": "$var.job.status"
+        },
+        "outgoing": {
+          "replacedString": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>replace</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Replace</span>s a string with another string."
+        },
+        {
+          "key": "description",
+          "highlightString": "Returns a new string with some or all matches of a pattern <span class='highlight-string'>replace</span>d by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match (function type not supported in workflow engine)."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.7149587750294464,
+      "y": 0.4431554524361949,
+      "scheduled": false
+    },
+    "de90": {
+      "name": "replace",
+      "canvasName": "replace",
+      "summary": "Prepare UPDATE - set Error",
+      "description": "Prepare UPDATE - set Error",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.4055.replacedString",
+          "substr": "/xxx_error_xxx/",
+          "newSubstr": "$var.569b.stringified"
+        },
+        "outgoing": {
+          "replacedString": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>replace</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Replace</span>s a string with another string."
+        },
+        {
+          "key": "description",
+          "highlightString": "Returns a new string with some or all matches of a pattern <span class='highlight-string'>replace</span>d by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match (function type not supported in workflow engine)."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.3498233215547704,
+      "y": 0.46867749419953597,
+      "scheduled": false
+    },
+    "e57": {
+      "name": "replace",
+      "canvasName": "replace",
+      "summary": "Prepare UPDATE - set result",
+      "description": "Prepare UPDATE - set Status",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.91e6.replacedString",
+          "substr": "/xxx_result_xxx/",
+          "newSubstr": "$var.job.result"
+        },
+        "outgoing": {
+          "replacedString": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>replace</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Replace</span>s a string with another string."
+        },
+        {
+          "key": "description",
+          "highlightString": "Returns a new string with some or all matches of a pattern <span class='highlight-string'>replace</span>d by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match (function type not supported in workflow engine)."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 2.0530035335689045,
+      "y": 0.4547563805104408,
+      "scheduled": false
+    },
+    "f6c5": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Error Handler",
+      "description": "Error Handler",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": 0,
+          "response": "$var.job.job_error"
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>stub</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Stub</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>stub</span> for an automated task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.8280329799764429,
+      "y": -1.9048723897911832,
+      "scheduled": false
+    },
+    "9c80": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "job_error",
+          "value": "Error occured in UpdateCheckJobRecord"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -1.0977620730270907,
+      "y": 0.4709976798143852
+    }
+  },
+  "transitions": {
+    "4055": {
+      "de90": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f6c5": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "7133": {
+      "9b2d": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f6c5": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "workflow_start": {
+      "9c80": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "9e4d": {
+      "9d6f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9b2d": {
+      "4055": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f6c5": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "9d6f": {
+      "569b": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f6c5": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "569b": {
+      "7133": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f6c5": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "8e74": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f6c5": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "91e6": {
+      "e57": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f6c5": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "72d": {},
+    "de90": {
+      "91e6": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f6c5": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "e57": {
+      "8e74": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f6c5": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "f6c5": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9c80": {
+      "9e4d": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "font_size": 12,
+  "created": "2021-11-16T09:38:34.247Z",
+  "created_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "createdVersion": "5.10.4-2020.1.62.0",
+  "last_updated": "2021-12-29T14:57:09.420Z",
+  "last_updated_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "lastUpdatedVersion": "5.40.5-2021.1.52.0",
+  "type": "automation",
+  "description": null,
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "main_job_id": {
+        "title": "newSubstr",
+        "type": "string",
+        "examples": [
+          "Howdy"
+        ]
+      },
+      "check_id": {
+        "title": "newSubstr",
+        "type": "string",
+        "examples": [
+          "Howdy"
+        ]
+      },
+      "output": {
+        "title": "value",
+        "type": [
+          "string",
+          "number",
+          "object",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          {
+            "a": "Hello",
+            "b": "World"
+          }
+        ]
+      },
+      "error": {
+        "title": "value",
+        "type": [
+          "string",
+          "number",
+          "object",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          {
+            "a": "Hello",
+            "b": "World"
+          }
+        ]
+      },
+      "status": {
+        "title": "newSubstr",
+        "type": "string",
+        "examples": [
+          "Howdy"
+        ]
+      },
+      "result": {
+        "title": "newSubstr",
+        "type": "string",
+        "examples": [
+          "Howdy"
+        ]
+      }
+    },
+    "required": [
+      "main_job_id",
+      "check_id",
+      "output",
+      "error",
+      "status",
+      "result"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "main_job_id": {
+        "title": "newSubstr",
+        "type": "string",
+        "examples": [
+          "Howdy"
+        ]
+      },
+      "check_id": {
+        "title": "newSubstr",
+        "type": "string",
+        "examples": [
+          "Howdy"
+        ]
+      },
+      "output": {
+        "title": "value",
+        "type": [
+          "string",
+          "number",
+          "object",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          {
+            "a": "Hello",
+            "b": "World"
+          }
+        ]
+      },
+      "error": {
+        "title": "value",
+        "type": [
+          "string",
+          "number",
+          "object",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          {
+            "a": "Hello",
+            "b": "World"
+          }
+        ]
+      },
+      "status": {
+        "title": "newSubstr",
+        "type": "string",
+        "examples": [
+          "Howdy"
+        ]
+      },
+      "result": {
+        "title": "newSubstr",
+        "type": "string",
+        "examples": [
+          "Howdy"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "job_error": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "SQL_UPDATE_check_job_record": {
+        "type": "string"
+      }
+    }
+  },
+  "canvasVersion": 1,
+  "tags": [],
+  "groups": []
+}

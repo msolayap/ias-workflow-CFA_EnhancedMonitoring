@@ -1,0 +1,698 @@
+{
+  "name": "CFA_sev1_getDeviceObjects",
+  "type": "automation",
+  "tasks": {
+    "3826": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "GetSevOneAdapterName",
+      "description": "Query data using a dot/bracket notation string and a matching key/value pair.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "SevOneAdapterName",
+          "obj": "$var.c3a3.Properties"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -0.8899297423887588,
+      "y": 0.4734042553191489,
+      "scheduled": false
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -1.3852459016393444,
+      "y": 0.4769503546099291
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 0.10817455439459127,
+      "y": 0.4818941504178273
+    },
+    "f6f": {
+      "name": "getS1DevicesByName",
+      "canvasName": "getS1DevicesByName",
+      "summary": "Resolve SevOne device to Id",
+      "description": "Resolve SevOne device to Id",
+      "location": "Application",
+      "locationType": null,
+      "app": "CFALib",
+      "type": "automatic",
+      "displayName": "CFALib",
+      "variables": {
+        "incoming": {
+          "adapterName": "$var.3826.return_data",
+          "names": "$var.3df7.value"
+        },
+        "outgoing": {
+          "data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "displayName",
+          "highlightString": "<span class='highlight-string'>CFA</span>Lib"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.43559718969555034,
+      "y": 0.4875886524822695,
+      "scheduled": false
+    },
+    "bbc": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Device ID",
+      "description": "Device ID",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": ".id",
+          "obj": "$var.b331.current_item"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -0.26551936078672406,
+      "y": 0.6202414113277623,
+      "scheduled": false
+    },
+    "39e0": {
+      "name": "getS1DeviceObjectsForDashBoard",
+      "canvasName": "getS1DeviceObjectsForDashBoard",
+      "summary": "Return device objects based on Id",
+      "description": "Return device objects based on Id",
+      "location": "Application",
+      "locationType": null,
+      "app": "CFALib",
+      "type": "automatic",
+      "displayName": "CFALib",
+      "variables": {
+        "incoming": {
+          "adapterName": "$var.3826.return_data",
+          "deviceId": "$var.bbc.return_data",
+          "options": {}
+        },
+        "outgoing": {
+          "data": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "displayName",
+          "highlightString": "<span class='highlight-string'>CFALib</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.2587584511370621,
+      "y": 0.7771587743732591,
+      "scheduled": false
+    },
+    "8cdd": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "error_msg",
+          "value": "ERROR: Unable to resolve device name in SevOne"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.44314689612784264,
+      "y": 1.1123491179201486
+    },
+    "495e": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Stub",
+      "description": "Create a stub for an automated task",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": 0,
+          "response": "$var.job.error_msg"
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>stub</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Stub</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>stub</span> for an automated task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.10018438844499078,
+      "y": 1.116063138347261,
+      "scheduled": false
+    },
+    "3d06": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "error_msg",
+          "value": "Placeholder for error messages"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.5878220140515222,
+      "y": 0.4787234042553192
+    },
+    "8a7d": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "error_msg",
+          "value": "ERROR: getting Device Objects for Dashboard"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.07068223724646588,
+      "y": 0.7818012999071495
+    },
+    "9cfe": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "error_msg",
+          "value": "ERROR: Exception: Sevone Device name to Id result not as expected"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.14566687154271665,
+      "y": 0.6304549675023212
+    },
+    "b331": {
+      "name": "forEach",
+      "canvasName": "forEach",
+      "summary": "Iterate SevOne Result - Devices array",
+      "description": "Iterate SevOne Result - Devices array",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_array": "$var.f6f.data"
+        },
+        "outgoing": {
+          "current_item": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>forEach</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.2716656422864167,
+      "y": 0.48653667595171773,
+      "scheduled": false
+    },
+    "b46": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "devices_objects_indicators",
+          "value": []
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.7365339578454333,
+      "y": 0.48226950354609927
+    },
+    "c2e1": {
+      "name": "arrayPush",
+      "canvasName": "push",
+      "summary": "push to Result Array",
+      "description": "push to Result Array",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.job.devices_objects_indicators",
+          "elementN": "$var.39e0.data"
+        },
+        "outgoing": {
+          "pushedArray": "$var.job.devices_objects_indicators"
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>push</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.2464658881376767,
+      "y": 0.9480037140204272,
+      "scheduled": false
+    },
+    "bff4": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "error_msg",
+          "value": "ERROR: While pushing to result array"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.10694529809465274,
+      "y": 0.9526462395543176
+    },
+    "c3a3": {
+      "name": "getProperties",
+      "canvasName": "getProperties",
+      "summary": "Get App Properties",
+      "description": "Get App properties",
+      "location": "Application",
+      "locationType": null,
+      "app": "CFALib",
+      "type": "automatic",
+      "displayName": "CFALib",
+      "variables": {
+        "incoming": {},
+        "outgoing": {
+          "Properties": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "displayName",
+          "highlightString": "<span class='highlight-string'>CFALib</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -1.0222482435597189,
+      "y": 0.48226950354609927
+    },
+    "3df7": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "deviceObj",
+          "value": "$var.job.device"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -1.2353629976580796,
+      "y": 0.475177304964539
+    }
+  },
+  "transitions": {
+    "3071": {},
+    "3826": {
+      "b46": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "3df7": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "f6f": {
+      "8cdd": {
+        "type": "standard",
+        "state": "error"
+      },
+      "b331": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bbc": {
+      "39e0": {
+        "type": "standard",
+        "state": "success"
+      },
+      "9cfe": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "39e0": {
+      "8a7d": {
+        "type": "standard",
+        "state": "error"
+      },
+      "c2e1": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8cdd": {
+      "495e": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "495e": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3d06": {
+      "f6f": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8a7d": {},
+    "9cfe": {},
+    "b331": {
+      "bbc": {
+        "type": "standard",
+        "state": "loop"
+      },
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b46": {
+      "3d06": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c2e1": {
+      "bff4": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "bff4": {},
+    "c3a3": {
+      "3826": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "3df7": {
+      "c3a3": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "font_size": 12,
+  "last_updated": "2021-12-29T14:45:47.775Z",
+  "last_updated_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "lastUpdatedVersion": "5.40.5-2021.1.52.0",
+  "created": "2021-12-13T06:21:25.001Z",
+  "created_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "createdVersion": "5.10.4-2020.1.62.0",
+  "tags": [],
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "device": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      }
+    },
+    "required": [
+      "device"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "device": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "error_msg": {
+        "type": "string"
+      },
+      "devices_objects_indicators": {
+        "title": "pushedArray",
+        "type": "array",
+        "examples": [
+          [
+            "Device1",
+            "Device2",
+            "Device3"
+          ]
+        ]
+      },
+      "deviceObj": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      }
+    }
+  },
+  "groups": []
+}

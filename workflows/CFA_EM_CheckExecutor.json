@@ -1,0 +1,2476 @@
+{
+  "name": "CFA_EM_CheckExecutor",
+  "tasks": {
+    "311": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Is get Check success?",
+      "description": "Is get Check success?",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "length",
+                    "task": "7d0e"
+                  },
+                  "operator": ">",
+                  "operand_2": {
+                    "variable": 0,
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": 0.24121779859484777,
+      "y": 0.6793587174348698
+    },
+    "1961": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "getCheck Result",
+      "description": "getCheck Result",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "check_details",
+          "obj": "$var.ac6.job_details"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "$var.job.job_error",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": -0.15456674473067916,
+      "y": 0.5571142284569138,
+      "scheduled": false
+    },
+    "2549": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Set job_error",
+      "description": "Set job_error",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "$var.job.job_error"
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>stub</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Stub</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>stub</span> for an automated task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 2.8598351001177855,
+      "y": -1.2704918032786885,
+      "scheduled": false
+    },
+    "2932": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Update Job Record",
+      "description": "Update Job Record",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "CFAOA:DB:UpdateJobRecord",
+          "variables": {
+            "main_job_id": {
+              "variable": "",
+              "task": "34cc",
+              "value": "value"
+            },
+            "status": {
+              "variable": "",
+              "task": "static",
+              "value": "COMPLETED"
+            },
+            "result": {
+              "variable": "",
+              "task": "static",
+              "value": "ERROR"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>childJob</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "job",
+      "x": 0.9799764428739693,
+      "y": -1.7759562841530054
+    },
+    "4344": {
+      "name": "evaluation",
+      "canvasName": "evaluation",
+      "summary": "Is Job status Incomplete?",
+      "description": "Is Job status Incomplete?",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "all_true_flag": false,
+          "evaluation_groups": [
+            {
+              "all_true_flag": false,
+              "evaluations": [
+                {
+                  "query": "",
+                  "operand_1": {
+                    "variable": "return_data",
+                    "task": "4856"
+                  },
+                  "operator": "==",
+                  "operand_2": {
+                    "variable": "incomplete",
+                    "task": "static"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "outgoing": {
+          "return_value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>eval</span>uation"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Run <span class='highlight-string'>Eval</span>uation Task"
+        },
+        {
+          "key": "description",
+          "highlightString": "Run an <span class='highlight-string'>eval</span>uation"
+        }
+      ],
+      "groups": [],
+      "x": 3.2108362779740873,
+      "y": 0.27049180327868855
+    },
+    "4856": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Query Job Status",
+      "description": "Query Job Status",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "tasks.workflow_end.status",
+          "obj": "$var.3c02.result"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 3.025912838633687,
+      "y": 0.4562841530054645,
+      "scheduled": false
+    },
+    "5125": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "create Check Job Record",
+      "description": "create Check Job Record",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "CFAOA:DB:CreateCheckJobRecord",
+          "variables": {
+            "check_id": {
+              "variable": "",
+              "task": "31bd",
+              "value": "value"
+            },
+            "main_job_id": {
+              "variable": "",
+              "task": "34cc",
+              "value": "value"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>childJob</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "job",
+      "x": 1.1142520612485276,
+      "y": 1.0956284153005464
+    },
+    "7783": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "input_device",
+          "value": "$var.job.input_device"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -1.1065573770491803,
+      "y": 0.08817635270541083
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -2.6978922716627634,
+      "y": 0.09619238476953908
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 0.9690140845070423,
+      "y": -2.8120567375886525
+    },
+    "8f16": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Insert Job Record",
+      "description": "Insert Job Record",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "CFAOA:DB:CreateJobRecord",
+          "variables": {
+            "main_job_id": {
+              "variable": "",
+              "task": "34cc",
+              "value": "value"
+            },
+            "device": {
+              "variable": "",
+              "task": "7783",
+              "value": "value"
+            },
+            "main_job_input": {
+              "variable": "",
+              "task": "1eb6",
+              "value": "merged_object"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>childJob</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "job",
+      "x": -0.6838407494145199,
+      "y": 0.5090180360721442
+    },
+    "ac6": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "get Check details",
+      "description": "get Check details",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "CFAOA:DB:getCheck",
+          "variables": {
+            "check_id": {
+              "variable": "",
+              "task": "31bd",
+              "value": "value",
+              "editable": true
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>childJob</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "job",
+      "x": -0.36065573770491804,
+      "y": 0.5490981963927856
+    },
+    "9b0d": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Prepare Check Flow input",
+      "description": "Prepare Check Flow input",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "main_job_id",
+              "value": {
+                "task": "job",
+                "variable": "_id"
+              }
+            },
+            {
+              "key": "device",
+              "value": {
+                "task": "7783",
+                "variable": "value"
+              }
+            },
+            {
+              "key": "check_id",
+              "value": {
+                "task": "31bd",
+                "variable": "value"
+              }
+            },
+            {
+              "key": "device_model",
+              "value": {
+                "task": "job",
+                "variable": "input_model",
+                "editable": true
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": 0.8266978922716628,
+      "y": 1.125886524822695
+    },
+    "fb3c": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "pickup check details",
+      "description": "pickup check details",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "check_details[0]",
+          "obj": "$var.ac6.job_details"
+        },
+        "outgoing": {
+          "return_data": "$var.job.check_name"
+        },
+        "error": "$var.job.job_error",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 0.3477751756440281,
+      "y": 0.8056112224448898,
+      "scheduled": false
+    },
+    "bdc5": {
+      "name": "hydrateTemplate",
+      "canvasName": "hydrateTemplate",
+      "summary": "prepare check flow description",
+      "description": "prepare check flow description",
+      "location": "Application",
+      "locationType": null,
+      "app": "TemplateEngine",
+      "type": "automatic",
+      "displayName": "TemplateEngine",
+      "variables": {
+        "incoming": {
+          "template": "Running Check: {{{name}}}",
+          "data": "$var.fb3c.return_data"
+        },
+        "outgoing": {
+          "hydratedTemplate": null
+        },
+        "error": "$var.job.job_error",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "displayName",
+          "highlightString": "<span class='highlight-string'>TemplateEngin</span>e"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.6042154566744731,
+      "y": 1.1462925851703407,
+      "scheduled": false
+    },
+    "7f10": {
+      "name": "triggerWorkFlowTask",
+      "canvasName": "triggerWorkFlowTask",
+      "summary": "Start Check Workflow",
+      "description": "Start Check Workflow",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkflowUtils",
+      "type": "automatic",
+      "displayName": "WorkflowUtils",
+      "variables": {
+        "incoming": {
+          "workflowName": "$var.b736.return_data",
+          "variables": "$var.9b0d.merged_object",
+          "description": "$var.bdc5.hydratedTemplate"
+        },
+        "outgoing": {
+          "jobDetails": null
+        },
+        "error": "$var.job.job_error",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>trigger</span>WorkFlowTask"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.4852767962308597,
+      "y": 0.453551912568306,
+      "scheduled": false
+    },
+    "34cc": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "main_job_id",
+          "value": "$var.job._id"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVar</span>iable"
+        }
+      ],
+      "groups": [],
+      "x": -1.7459016393442623,
+      "y": 0.07414829659318638
+    },
+    "11ae": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Pickup Check Job ID",
+      "description": "Pickup Check Job ID",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "_id",
+          "obj": "$var.7f10.jobDetails"
+        },
+        "outgoing": {
+          "return_data": "$var.job.check_job_id"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 1.6627634660421546,
+      "y": 0.7801418439716312,
+      "scheduled": false
+    },
+    "a75e": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Update Check Job Record",
+      "description": "Update Check Job Record",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "CFAOA:DB:UpdateCheckJobRecord",
+          "variables": {
+            "check_id": {
+              "variable": "",
+              "task": "31bd",
+              "value": "value"
+            },
+            "main_job_id": {
+              "variable": "",
+              "task": "34cc",
+              "value": "value"
+            },
+            "output": {
+              "variable": "",
+              "task": "static"
+            },
+            "error": {
+              "variable": "",
+              "task": "static"
+            },
+            "status": {
+              "variable": "",
+              "task": "static",
+              "value": "RUNNING"
+            },
+            "result": {
+              "variable": "",
+              "task": "static",
+              "value": "WAITING"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>childJob</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "job",
+      "x": 1.9093050647820966,
+      "y": 1.1420765027322404
+    },
+    "3c02": {
+      "name": "JobCancel",
+      "canvasName": "JobCancel",
+      "summary": "onTimeout: Cancel the Check Job",
+      "description": "onTimeout: Cancel the Check Job",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkflowUtils",
+      "type": "automatic",
+      "displayName": "WorkflowUtils",
+      "variables": {
+        "incoming": {
+          "jobId": "$var.11ae.return_data",
+          "seconds": 120
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "$var.job.job_error",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>JobCancel</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>JobCancel</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 2.7373380447585394,
+      "y": 0.6666666666666666,
+      "scheduled": false
+    },
+    "7c35": {
+      "name": "delay",
+      "canvasName": "delay",
+      "summary": "Waiting for Job to Complete",
+      "description": "Wait for Job to Complete",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "time": 10
+        },
+        "outgoing": {
+          "time_in_milliseconds": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>delay</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Delay</span> a Job"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Delay</span> a Job for a duration by Job ID and number of seconds."
+        }
+      ],
+      "groups": [],
+      "x": 2.3168433451118964,
+      "y": 1.1174863387978142,
+      "scheduled": false
+    },
+    "bd20": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Extract check_result from result",
+      "description": "Extract check_result from result",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "variables.check_result",
+          "obj": "$var.fb80.response"
+        },
+        "outgoing": {
+          "return_data": "$var.job.check_result"
+        },
+        "error": "$var.job.job_error",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 4.379391100702576,
+      "y": 0.1963927855711423,
+      "scheduled": false
+    },
+    "cda8": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Update Check Job Record",
+      "description": "Update Check Job Record",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "CFAOA:DB:UpdateCheckJobRecord",
+          "variables": {
+            "check_id": {
+              "variable": "",
+              "task": "31bd",
+              "value": "value"
+            },
+            "main_job_id": {
+              "variable": "",
+              "task": "34cc",
+              "value": "value"
+            },
+            "output": {
+              "variable": "",
+              "task": "1acc",
+              "value": "return_data"
+            },
+            "error": {
+              "variable": "",
+              "task": "86e9",
+              "value": "return_data"
+            },
+            "status": {
+              "variable": "",
+              "task": "4856",
+              "value": "return_data"
+            },
+            "result": {
+              "variable": "",
+              "task": "bdf7",
+              "value": "return_data"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>childJob</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "job",
+      "x": 5.097189695550352,
+      "y": -0.8216432865731463
+    },
+    "1acc": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "get Output",
+      "description": "get Output",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "output",
+          "obj": "$var.bd20.return_data"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 4.956674473067916,
+      "y": -0.49498997995991983,
+      "scheduled": false
+    },
+    "86e9": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "get Error",
+      "description": "get Error",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "error",
+          "obj": "$var.bd20.return_data"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 4.80327868852459,
+      "y": -0.23647294589178355,
+      "scheduled": false
+    },
+    "bdf7": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "get Result",
+      "description": "get Result",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "result",
+          "obj": "$var.bd20.return_data"
+        },
+        "outgoing": {
+          "return_data": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 4.614754098360656,
+      "y": -0.018036072144288578,
+      "scheduled": false
+    },
+    "b372": {
+      "name": "setObjectKey",
+      "canvasName": "setObjectKey",
+      "summary": "Input for searchJobs",
+      "description": "Prepare Input for searchJobs",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Object",
+      "variables": {
+        "incoming": {
+          "obj": {
+            "query": {}
+          },
+          "path": [
+            "query",
+            "_id"
+          ],
+          "value": "$var.11ae.return_data"
+        },
+        "outgoing": {
+          "object": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>setObjectKey</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 3.552414605418139,
+      "y": 0.27049180327868855,
+      "scheduled": false
+    },
+    "b0d3": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "job_error",
+          "value": "No Errors"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -2.0679156908665104,
+      "y": 0.052104208416833664
+    },
+    "c985": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Set job_error",
+      "description": "Set job_error",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "$var.job.job_error"
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>stub</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Stub</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>stub</span> for an automated task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.03651354534746761,
+      "y": -1.25754060324826,
+      "scheduled": false
+    },
+    "84ad": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "check_result",
+          "value": {
+            "output": "No Output.",
+            "error": "Internal Workflow failure. Investigate the Job Id",
+            "result": "FAILURE",
+            "status": "ERROR"
+          }
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -2.373536299765808,
+      "y": 0.06012024048096192
+    },
+    "d1e7": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Set job_error",
+      "description": "Set job_error",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "$var.job.job_error"
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>stub</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Stub</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>stub</span> for an automated task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.007820136852395,
+      "y": -0.41680672268907565,
+      "scheduled": false
+    },
+    "bbb3": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Set job_error",
+      "description": "Set job_error",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "$var.job.job_error"
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>stub</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Stub</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>stub</span> for an automated task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.9716520039100685,
+      "y": -0.6605042016806723,
+      "scheduled": false
+    },
+    "f569": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "job_error",
+          "value": "Invalid Check Id or error reading Check details"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": 0.04800936768149883,
+      "y": -0.2985971943887776
+    },
+    "d8ff": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Update Job Record",
+      "description": "Update Job Record",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "CFAOA:DB:UpdateJobRecord",
+          "variables": {
+            "main_job_id": {
+              "variable": "",
+              "task": "34cc",
+              "value": "value"
+            },
+            "status": {
+              "variable": "",
+              "task": "static",
+              "value": "COMPLETED"
+            },
+            "result": {
+              "variable": "",
+              "task": "static",
+              "value": "SUCCESS"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>childJob</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "job",
+      "x": 5.234192037470726,
+      "y": -1.2605210420841684
+    },
+    "15fa": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Set job_error",
+      "description": "Set job_error",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "$var.job.job_error"
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>stub</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Stub</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>stub</span> for an automated task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": -0.41578327444051827,
+      "y": -1.459016393442623,
+      "scheduled": false
+    },
+    "35f7": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "Set job_error",
+      "description": "Set job_error",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": "",
+          "response": "$var.job.job_error"
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>stub</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Stub</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>stub</span> for an automated task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 1.197879858657244,
+      "y": -2.158469945355191,
+      "scheduled": false
+    },
+    "31bd": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "check_id",
+          "value": "$var.job.check_id"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -1.4063231850117095,
+      "y": 0.08016032064128256
+    },
+    "46bb": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "job_error",
+          "value": "Error while updating Check/Job Record in database"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": 2.004694835680751,
+      "y": -1.8918439716312057
+    },
+    "bd07": {
+      "name": "childJob",
+      "canvasName": "childJob",
+      "summary": "Update Check Job Record",
+      "description": "Update Check Job Record",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "task": "",
+          "workflow": "CFAOA:DB:UpdateCheckJobRecord",
+          "variables": {
+            "check_id": {
+              "variable": "",
+              "task": "31bd",
+              "value": "value"
+            },
+            "main_job_id": {
+              "variable": "",
+              "task": "34cc",
+              "value": "value"
+            },
+            "output": {
+              "variable": "",
+              "task": "static",
+              "value": ""
+            },
+            "error": {
+              "variable": "",
+              "task": "static",
+              "value": ""
+            },
+            "status": {
+              "variable": "",
+              "task": "static",
+              "value": "COMPLETED"
+            },
+            "result": {
+              "variable": "",
+              "task": "static",
+              "value": "ERROR"
+            }
+          },
+          "data_array": "",
+          "transformation": "",
+          "loopType": ""
+        },
+        "outgoing": {
+          "job_details": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>childJob</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "job",
+      "x": 1.544477028347996,
+      "y": -1.6369747899159663
+    },
+    "fb80": {
+      "name": "restCall",
+      "canvasName": "restCall",
+      "summary": "Get Job Results",
+      "description": "Execute a REST call",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "uri": "$var.eb51.combinedStrings",
+          "verb": "GET",
+          "user": "",
+          "password": "",
+          "headers": "",
+          "body": "",
+          "responseHeaders": false
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>restCall</span>"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 4.148711943793911,
+      "y": 0.2665330661322645,
+      "scheduled": false
+    },
+    "effd": {
+      "name": "createRunWorkflowURL",
+      "canvasName": "createRunWorkflowURL",
+      "summary": "createRunWorkflowURL",
+      "description": "Create a URL which can be used to run a workflow",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkflowUtils",
+      "type": "automatic",
+      "displayName": "WorkflowUtils",
+      "variables": {
+        "incoming": {
+          "key": "$var.job._id",
+          "ref": "workflowrunnerurl"
+        },
+        "outgoing": {
+          "OutRef": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "createRunWorkflow<span class='highlight-string'>URL</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "createRunWorkflow<span class='highlight-string'>URL</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>URL</span> which can be used to run a workflow"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 3.7939110070257613,
+      "y": 0.274822695035461,
+      "scheduled": false
+    },
+    "98ef": {
+      "name": "replace",
+      "canvasName": "replace",
+      "summary": "Extract Base URL alone",
+      "description": "Extract Base URL alone",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.effd.OutRef",
+          "substr": "/\\:\\d\\d\\d\\d\\/run.*$/ig",
+          "newSubstr": ":3000/getWorkflowJobResult?jobId="
+        },
+        "outgoing": {
+          "replacedString": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>replace</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Replace</span>s a string with another string."
+        },
+        {
+          "key": "description",
+          "highlightString": "Returns a new string with some or all matches of a pattern <span class='highlight-string'>replace</span>d by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match (function type not supported in workflow engine)."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 3.997658079625293,
+      "y": 0.5939716312056738,
+      "scheduled": false
+    },
+    "eb51": {
+      "name": "stringConcat",
+      "canvasName": "concat",
+      "summary": "Forrm WorkflowRunner URL",
+      "description": "Forrm WorkflowRunner URL",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.98ef.replacedString",
+          "stringN": "$var.11ae.return_data"
+        },
+        "outgoing": {
+          "combinedStrings": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>concat</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Concat</span>enates strings together."
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Concat</span>enates a string with a second string(s). The second parameter can be a string or array."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 4.268149882903981,
+      "y": 0.5780141843971631,
+      "scheduled": false
+    },
+    "1eb6": {
+      "name": "merge",
+      "canvasName": "merge",
+      "summary": "Job Input",
+      "description": "Main Job Input",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "data_to_merge": [
+            {
+              "key": "input_device",
+              "value": {
+                "task": "job",
+                "variable": "input_device",
+                "editable": true
+              }
+            },
+            {
+              "key": "input_model",
+              "value": {
+                "task": "job",
+                "variable": "input_model",
+                "editable": true
+              }
+            },
+            {
+              "key": "check_id",
+              "value": {
+                "task": "job",
+                "variable": "check_id",
+                "editable": true
+              }
+            }
+          ]
+        },
+        "outgoing": {
+          "merged_object": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>merge</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Merge</span> Data"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Merge</span> data into a single object"
+        }
+      ],
+      "groups": [],
+      "x": -0.8747072599531616,
+      "y": 0.1342685370741483
+    },
+    "7d0e": {
+      "name": "arrayLength",
+      "canvasName": "length",
+      "summary": "Gets the length of an array.",
+      "description": "Gets the length of an array.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Array",
+      "variables": {
+        "incoming": {
+          "arr": "$var.1961.return_data"
+        },
+        "outgoing": {
+          "length": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>length</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "Gets the <span class='highlight-string'>length</span> of an array."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.053864168618266976,
+      "y": 0.5951903807615231,
+      "scheduled": false
+    },
+    "b736": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "pickup workflow_name",
+      "description": "pickup workflow_name",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "workflow",
+          "obj": "$var.fb3c.return_data"
+        },
+        "outgoing": {
+          "return_data": "$var.job.check_name"
+        },
+        "error": "$var.job.job_error",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 0.49063231850117095,
+      "y": 0.9599198396793587,
+      "scheduled": false
+    }
+  },
+  "transitions": {
+    "311": {
+      "fb3c": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f569": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "1961": {
+      "7d0e": {
+        "type": "standard",
+        "state": "success"
+      },
+      "f569": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "2549": {
+      "bd07": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "2932": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      },
+      "35f7": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "4344": {
+      "2549": {
+        "type": "standard",
+        "state": "error"
+      },
+      "b372": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "7c35": {
+        "type": "revert",
+        "state": "success"
+      }
+    },
+    "4856": {
+      "2549": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "4344": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "5125": {
+      "7f10": {
+        "type": "standard",
+        "state": "success"
+      },
+      "d1e7": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "7783": {
+      "1eb6": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "84ad": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "8c95": {},
+    "8f16": {
+      "ac6": {
+        "type": "standard",
+        "state": "success"
+      },
+      "15fa": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "1b8c": {},
+    "ac6": {
+      "1961": {
+        "type": "standard",
+        "state": "success"
+      },
+      "c985": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "9b0d": {
+      "5125": {
+        "type": "standard",
+        "state": "success"
+      },
+      "d1e7": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "fb3c": {
+      "c985": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "b736": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bdc5": {
+      "9b0d": {
+        "type": "standard",
+        "state": "success"
+      },
+      "d1e7": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "7f10": {
+      "11ae": {
+        "type": "standard",
+        "state": "success"
+      },
+      "d1e7": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "34cc": {
+      "31bd": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "11ae": {
+      "a75e": {
+        "type": "standard",
+        "state": "success"
+      },
+      "bbb3": {
+        "type": "standard",
+        "state": "failure"
+      }
+    },
+    "a75e": {
+      "7c35": {
+        "type": "standard",
+        "state": "success"
+      },
+      "bbb3": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "3c02": {
+      "4856": {
+        "type": "standard",
+        "state": "success"
+      },
+      "bbb3": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "eaff": {},
+    "fd46": {},
+    "7c35": {
+      "3c02": {
+        "type": "standard",
+        "state": "success"
+      },
+      "bbb3": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "11ca": {},
+    "bd20": {
+      "2549": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "bdf7": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "cda8": {
+      "d8ff": {
+        "type": "standard",
+        "state": "success"
+      },
+      "46bb": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "1acc": {
+      "2549": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "cda8": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "86e9": {
+      "2549": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "1acc": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bdf7": {
+      "2549": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "86e9": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b372": {
+      "2549": {
+        "type": "standard",
+        "state": "error"
+      },
+      "effd": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b0d3": {
+      "34cc": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "c985": {
+      "2932": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "84ad": {
+      "b0d3": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "fd45": {},
+    "d1e7": {
+      "2932": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bbb3": {
+      "bd07": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f569": {
+      "c985": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "d8ff": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      },
+      "46bb": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "15fa": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "35f7": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "31bd": {
+      "7783": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b642": {},
+    "46bb": {
+      "35f7": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "bd07": {
+      "2932": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "fb80": {
+      "2549": {
+        "type": "standard",
+        "state": "error"
+      },
+      "bd20": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "effd": {
+      "2549": {
+        "type": "standard",
+        "state": "error"
+      },
+      "98ef": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "98ef": {
+      "eb51": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "eb51": {
+      "fb80": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "1eb6": {
+      "8f16": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "7d0e": {
+      "311": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "b736": {
+      "bdc5": {
+        "type": "standard",
+        "state": "success"
+      },
+      "c985": {
+        "type": "standard",
+        "state": "failure"
+      }
+    }
+  },
+  "font_size": 12,
+  "created": "2021-11-23T13:06:46.064Z",
+  "created_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "createdVersion": "5.10.4-2020.1.62.0",
+  "last_updated": "2021-12-29T15:01:30.869Z",
+  "last_updated_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "lastUpdatedVersion": "5.40.5-2021.1.52.0",
+  "type": "automation",
+  "description": null,
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "input_device": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "_id": {
+        "title": "Key",
+        "type": "string"
+      },
+      "input_model": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "check_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      }
+    },
+    "required": [
+      "input_device",
+      "_id",
+      "input_model",
+      "check_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "input_device": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "input_model": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "check_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "job_error": {
+        "type": "string"
+      },
+      "check_name": {
+        "type": [
+          "string",
+          "number",
+          "object",
+          "integer",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          "value"
+        ]
+      },
+      "main_job_id": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "check_job_id": {
+        "type": [
+          "string",
+          "number",
+          "object",
+          "integer",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          "value"
+        ]
+      },
+      "check_result": {
+        "type": [
+          "string",
+          "number",
+          "object",
+          "integer",
+          "array",
+          "boolean",
+          "null"
+        ],
+        "examples": [
+          "value"
+        ]
+      }
+    }
+  },
+  "canvasVersion": 1,
+  "tags": [],
+  "groups": []
+}

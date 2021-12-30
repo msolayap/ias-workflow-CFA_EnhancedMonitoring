@@ -1,0 +1,386 @@
+{
+  "name": "CFAOA:DB:CreateCheckJobRecord",
+  "tasks": {
+    "7133": {
+      "name": "replace",
+      "canvasName": "replace",
+      "summary": "Prepare INSERT - set Job ID",
+      "description": "Prepare INSERT - set Job ID",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.9e4d.value",
+          "substr": "/xxx_job_id_xxx/",
+          "newSubstr": "$var.job.main_job_id"
+        },
+        "outgoing": {
+          "replacedString": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>replace</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Replace</span>s a string with another string."
+        },
+        {
+          "key": "description",
+          "highlightString": "Returns a new string with some or all matches of a pattern <span class='highlight-string'>replace</span>d by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match (function type not supported in workflow engine)."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.3875147232037691,
+      "y": 0.45707656612529,
+      "scheduled": false
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -0.7196702002355713,
+      "y": 0.45707656612529
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 0.9681978798586572,
+      "y": -0.21809744779582366
+    },
+    "9e4d": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "SQL_INSERT_check_job_record",
+          "value": "INSERT into ops_check_results (job_id, check_id, status, result) \nVALUES ('xxx_job_id_xxx', xxx_check_id_xxx, 'STARTED', 'WAITING')"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.17667844522968199,
+      "y": 0.44779582366589327
+    },
+    "9b2d": {
+      "name": "replace",
+      "canvasName": "replace",
+      "summary": "Prepare INSERT - set check ID",
+      "description": "Prepare INSERT - set check ID",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.7133.replacedString",
+          "substr": "/xxx_check_id_xxx/",
+          "newSubstr": "$var.job.check_id"
+        },
+        "outgoing": {
+          "replacedString": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>replace</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Replace</span>s a string with another string."
+        },
+        {
+          "key": "description",
+          "highlightString": "Returns a new string with some or all matches of a pattern <span class='highlight-string'>replace</span>d by a replacement. The pattern can be a string or a RegExp, and the replacement can be a string or a function to be called for each match (function type not supported in workflow engine)."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.673733804475854,
+      "y": 0.4547563805104408,
+      "scheduled": false
+    },
+    "b2ad": {
+      "name": "insert",
+      "canvasName": "insert",
+      "summary": "INSERT Check Job Record",
+      "description": "INSERT Check Job Record",
+      "location": "Adapter",
+      "locationType": "MicrosoftSQL",
+      "app": "MicrosoftSQL",
+      "type": "automatic",
+      "displayName": "MicrosoftSQL",
+      "variables": {
+        "incoming": {
+          "sql": "$var.9b2d.replacedString",
+          "adapter_id": "MSSQL-DB1"
+        },
+        "outgoing": {
+          "result": null
+        },
+        "error": "$var.job.job_error"
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>insert</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>insert</span> item into MicrosoftSQL server."
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>insert</span> item into MicrosoftSQL server."
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.9752650176678446,
+      "y": 0.4431554524361949,
+      "scheduled": false
+    },
+    "6ef6": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "job_error",
+          "value": "Error in Create Check job Record"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.4793875147232038,
+      "y": 0.45707656612529
+    },
+    "aa91": {
+      "name": "stub",
+      "canvasName": "stub",
+      "summary": "ErrorHandler",
+      "description": "ErrorHandler",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "Tools",
+      "variables": {
+        "incoming": {
+          "type": "success",
+          "delay": 0,
+          "response": "$var.job.job_error"
+        },
+        "outgoing": {
+          "response": null
+        },
+        "error": ""
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>stub</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Stub</span>"
+        },
+        {
+          "key": "description",
+          "highlightString": "Create a <span class='highlight-string'>stub</span> for an automated task"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.6702002355712603,
+      "y": -0.1925754060324826,
+      "scheduled": false
+    }
+  },
+  "transitions": {
+    "7133": {
+      "9b2d": {
+        "type": "standard",
+        "state": "success"
+      },
+      "aa91": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "workflow_start": {
+      "6ef6": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "9e4d": {
+      "7133": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "9b2d": {
+      "b2ad": {
+        "type": "standard",
+        "state": "success"
+      },
+      "aa91": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "b2ad": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      },
+      "aa91": {
+        "type": "standard",
+        "state": "error"
+      }
+    },
+    "f949": {},
+    "6ef6": {
+      "9e4d": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "aa91": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "font_size": 12,
+  "created": "2021-11-16T09:36:20.834Z",
+  "created_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "createdVersion": "5.10.4-2020.1.62.0",
+  "last_updated": "2021-12-29T14:57:09.423Z",
+  "last_updated_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "lastUpdatedVersion": "5.40.5-2021.1.52.0",
+  "type": "automation",
+  "description": null,
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "main_job_id": {
+        "title": "newSubstr",
+        "type": "string",
+        "examples": [
+          "Howdy"
+        ]
+      },
+      "check_id": {
+        "title": "newSubstr",
+        "type": "string",
+        "examples": [
+          "Howdy"
+        ]
+      }
+    },
+    "required": [
+      "main_job_id",
+      "check_id"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "main_job_id": {
+        "title": "newSubstr",
+        "type": "string",
+        "examples": [
+          "Howdy"
+        ]
+      },
+      "check_id": {
+        "title": "newSubstr",
+        "type": "string",
+        "examples": [
+          "Howdy"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "job_error": {
+        "type": [
+          "array",
+          "boolean",
+          "null",
+          "number",
+          "object",
+          "string"
+        ]
+      },
+      "SQL_INSERT_check_job_record": {
+        "type": "string"
+      }
+    }
+  },
+  "canvasVersion": 1,
+  "tags": [],
+  "groups": []
+}

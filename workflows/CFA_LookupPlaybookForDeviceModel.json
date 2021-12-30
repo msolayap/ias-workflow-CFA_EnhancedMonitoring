@@ -1,0 +1,276 @@
+{
+  "name": "CFA:LookupPlaybookForDeviceModel",
+  "type": "automation",
+  "tasks": {
+    "5969": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "Playbook_Dict",
+          "value": {
+            "C6880-X-LE": "CFA_Stability_Check_IOS_6880",
+            "WS-C3850-12XS": "CFA_Stability_Check_IOS_3850_9300",
+            "WS-C3850-24P": "CFA_Stability_Check_IOS_3850_9300",
+            "WS-C3850-48P": "CFA_Stability_Check_IOS_3850_9300",
+            "WS-C3850-48P-S": "CFA_Stability_Check_IOS_3850_9300"
+          }
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": -0.02107728337236534,
+      "y": 0.342685370741483
+    },
+    "8536": {
+      "name": "newVariable",
+      "canvasName": "newVariable",
+      "summary": "Create a Job Variable",
+      "description": "Create a new Job variable by Job ID and assign it a value.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "name": "playbook_name",
+          "value": "unknown"
+        },
+        "outgoing": {
+          "value": null
+        }
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>newVariable</span>"
+        }
+      ],
+      "groups": [],
+      "x": 0.775175644028103,
+      "y": 0.6593186372745491
+    },
+    "workflow_start": {
+      "name": "workflow_start",
+      "groups": [],
+      "x": -0.25995316159250587,
+      "y": 0.3366733466933868
+    },
+    "workflow_end": {
+      "name": "workflow_end",
+      "groups": [],
+      "x": 1.088992974238876,
+      "y": 0.342685370741483
+    },
+    "90d2": {
+      "name": "query",
+      "canvasName": "query",
+      "summary": "Pickup Playbook Name",
+      "description": "Pickup Playbook Name",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "operation",
+      "displayName": "WorkFlowEngine",
+      "variables": {
+        "incoming": {
+          "pass_on_null": false,
+          "query": "$var.4c68.uppercaseString",
+          "obj": "$var.5969.value"
+        },
+        "outgoing": {
+          "return_data": "$var.job.playbook_name"
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>query</span>"
+        },
+        {
+          "key": "summary",
+          "highlightString": "<span class='highlight-string'>Query</span> Data Using 'json-query' Format"
+        },
+        {
+          "key": "description",
+          "highlightString": "<span class='highlight-string'>Query</span> data using a dot/bracket notation string and a matching key/value pair."
+        }
+      ],
+      "groups": [],
+      "x": 0.5573770491803278,
+      "y": 0.3527054108216433,
+      "scheduled": false
+    },
+    "4c68": {
+      "name": "toUpperCase",
+      "canvasName": "toUpperCase",
+      "summary": "Converts a string to upper case.",
+      "description": "Returns the calling string value converted to upper case.",
+      "location": "Application",
+      "locationType": null,
+      "app": "WorkFlowEngine",
+      "type": "automatic",
+      "displayName": "String",
+      "variables": {
+        "incoming": {
+          "str": "$var.job.device_model"
+        },
+        "outgoing": {
+          "uppercaseString": null
+        },
+        "error": "",
+        "decorators": []
+      },
+      "deprecated": false,
+      "matched": [
+        {
+          "key": "canvasName",
+          "highlightString": "<span class='highlight-string'>toUpper</span>Case"
+        }
+      ],
+      "groups": [],
+      "actor": "Pronghorn",
+      "x": 0.25878220140515223,
+      "y": 0.3486973947895792,
+      "scheduled": false
+    }
+  },
+  "transitions": {
+    "5969": {
+      "4c68": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "8536": {
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_start": {
+      "5969": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "workflow_end": {},
+    "90d2": {
+      "8536": {
+        "type": "standard",
+        "state": "failure"
+      },
+      "workflow_end": {
+        "type": "standard",
+        "state": "success"
+      }
+    },
+    "f810": {},
+    "4c68": {
+      "90d2": {
+        "type": "standard",
+        "state": "success"
+      }
+    }
+  },
+  "font_size": 12,
+  "last_updated": "2021-12-29T14:57:09.409Z",
+  "last_updated_by": {
+    "provenance": "azure_sso",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": false
+  },
+  "lastUpdatedVersion": "5.40.5-2021.1.52.0",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "device_model": {
+        "title": "str",
+        "type": "string",
+        "examples": [
+          "Hello World"
+        ]
+      }
+    },
+    "required": [
+      "device_model"
+    ]
+  },
+  "outputSchema": {
+    "type": "object",
+    "properties": {
+      "device_model": {
+        "title": "str",
+        "type": "string",
+        "examples": [
+          "Hello World"
+        ]
+      },
+      "_id": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{24}$"
+      },
+      "initiator": {
+        "type": "string"
+      },
+      "Playbook_Dict": {
+        "type": "object",
+        "properties": {
+          "C6880-X-LE": {
+            "type": "string"
+          },
+          "WS-C3850-12XS": {
+            "type": "string"
+          },
+          "WS-C3850-24P": {
+            "type": "string"
+          },
+          "WS-C3850-48P": {
+            "type": "string"
+          },
+          "WS-C3850-48P-S": {
+            "type": "string"
+          }
+        }
+      },
+      "playbook_name": {
+        "type": "string"
+      }
+    }
+  },
+  "created": "2021-12-10T05:33:19.574Z",
+  "created_by": {
+    "provenance": "AzureSSO",
+    "username": "Solayappan, Murali",
+    "firstname": "",
+    "inactive": true
+  },
+  "createdVersion": "5.40.5-2021.1.52.0",
+  "preAutomationTime": 0,
+  "sla": 0,
+  "canvasVersion": 1,
+  "tags": [],
+  "groups": []
+}

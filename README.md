@@ -1,36 +1,45 @@
-# Expiring F5 Certificates Audit
+# CFA Enhanced Monitoring
 
-- [Expiring F5 Certificates Audit](#expiring-f5-certificates-audit)
-  - [Prerequisites](#prerequisites)
-    - [Adapters](#adapters)
-    - [Ansible Playbooks](#ansible-playbooks)
-    - [Additional Workflows](#additional-workflows)
-  - [Installation](#installation)
-    - [Workflows](#workflows)
-      - [F5Certs: MAIN Process F5 Details](#f5certs-main-process-f5-details)
-        - [Process CMDB Raw Output](#process-cmdb-raw-output)
-        - [Post Process F5s](#post-process-f5s)
-      - [F5Certs: CHILD Get F5 Details](#f5certs-child-get-f5-details)
-        - [Transform bigip_cert_info to CertificateObjectList.jst](#transform-bigip_cert_info-to-certificateobjectlistjst)
-    - [Automation Catalog](#automation-catalog)
+## Purpose
 
-## Prerequisites
-
-The Ansible playbook is based on the [F5 Modules for Ansible](https://galaxy.ansible.com/f5networks/f5_modules) and supports BIG-IP 12.x onwards.
-Please see [F5 Modules for Ansible -> Releases and Versioning](https://clouddocs.f5.com/products/orchestration/ansible/devel/usage/supported-versions.html) for exact details.
+CFA Enhanced Monitoring dashboard is a project to provide customized insight into availability and performance of CFA network equipments. The dashboard (code maintained elsewhere), invokes Itential workflows to reach and communicate to Network equipments, monitoring tools (SevOne), etc., This repository is to manage the workflows and its dependent assets like JST, Handlebar template, etc.,
 
 ### Adapters
 
-- [EmailV2 Adapter](https://github.com/CenturyLink/ias-adapter-emailV2): To send emails
-- [app-template_engine](https://github.com/CenturyLink/ias-app-template-engine): Used to create the email body
+* SevOne
+* MSSQL DB
+* HPNA DB
+* IAG
 
 ### Ansible Playbooks
 
-- bigip_cert_info: Ansible playbook to run against F5 Load Balancers
+* CFA_Stability_Check_IOS_6880
+* CFA_Stability_Check_IOS_3850_9300,
 
-### Additional Workflows
 
-- [IAS Common Workflows](https://github.com/CenturyLink/ias-workflows)
+### Applications
+
+* CFALib
+* TemplateEngine
+* WorkflowUtils
+
+### Workflows
+* CFAOA_CHK_dev_hpna_bkup_db
+* CFAOA_CHK_dev_hpna_db
+* CFAOA_CHK_dev_sev1_db
+* CFAOA_CHK_device_details_db
+* CFAOA_CHK_device_details_mock
+* CFAOA_CHK_device_login_db
+* CFAOA_CHK_telemetry_sev1_db
+* CFAOA_DB_CreateCheckJobRecord
+* CFAOA_DB_CreateJobRecord
+* CFAOA_DB_UpdateCheckJobRecord
+* CFAOA_DB_UpdateJobRecord
+* CFAOA_DB_getCheck
+* CFA_EM_CheckExecutor
+* CFA_LookupPlaybookForDeviceModel
+* CFA_sev1_getDeviceObjects
+* CFA_sev1_getIndicatorValues
 
 ## Installation
 
@@ -38,86 +47,36 @@ Please ensure that all prerequisites mentioned above are available.
 
 ### Workflows
 
-1. Log into the IAP console and choose the 'Automation Studio' from the menu.
-2. Select the six squares image icon from the 'Automations' section in left pane.
+TODO
 
-   ![Six Squares](docs/common/studioSix.png)
+### Design
 
-3. Choose the import icon. Select all workflows in the 'workflows' directory. Each should be imported.
+Refer this confluence space for [CFA Ops Acceptance WorkFlows Automation Design](https://confluence.savvis.net/display/manserv/Automation+Design)
 
-   ![Import Workflows](docs/common/importWorkflows.png)
+#### CFA Workflows arrangement details
 
-4. Open each of the workflows detailed bellow to configure transforms. N.B. if the workflow is not detailed bellow, it is assumed that there are no transforms.
-   1. Double click on the JST to open it's specific dialog.
-   2. Next to the 'Transformation Name' click the 'X' button.
-   3. Click the Upload button next to the 'X' button.
-   4. In the workflows\\_workflow name_ directory, pick the transform.
-   5. Set the values of each incoming schema. N.B. Pay attention to both the Location and Value properties to ensure they match exactly.
-   6. Choose save.
-5. Save the work flow by choosing save.
+As of today *12/30/2021*
+CFA Dashboard needs to invoke Itential Workflows for two requirements.
 
-#### F5Certs: MAIN Process F5 Details
+1. Collecting SevOne Telemetry data to display RAG status against Network devices.
+2. To obtain output of certain CLI commands against given Network device in real time.
 
-![MAIN Process F5 Details](docs/f5CertsMAINProcessF5Devices.png) \* each JST is shown in order and is configured as above using the following steps:
+##### SevOne Telemetry data
+The following flows are used for collecting SevOne Telemetry data.
 
-##### Process CMDB Raw Output
+* CFA_sev1_getDeviceObjects
+* CFA_sev1_getIndicatorValues
 
-This processes the output from the CMDB, filtering the results to just those that can be processed by this workflow.
+This is not using the SevOne Adapter directly but via a custom built wrapper around SevOne Adapter to filter the relevant Objects and Indicators. Refer Adapter CFALib for more details.
 
-| Name      | Location          | Value  |
-| --------- | ----------------- | ------ |
-| **f5Raw** | getNetworkDevices | result |
+##### To Obtain output for commands
 
-##### Post Process F5s
+For this purpose, the workflow **CFA_EM_CheckExecutor** is the entry point. Rest of the flows are subflows underneath. This workflow takes the following input
 
-This post-processes the results from all of the F5s, sorting by certificate and separating into expiring and expired certificates.
+device name - Name of the device to run the commands against
+device model string - To issue relevant commands for the appropriate device type/model.
+check_id - executing commands against device is one of the several functions. This check_id distinguish the actual function to perform against the device. check_id 2001 is for commands execution.
 
-| Name         | Location | Value    |
-| ------------ | -------- | -------- |
-| **f5Result** | job      | f5Result |
+#### Workflow Runner
 
-#### F5Certs: CHILD Get F5 Details
-
-![CHILD Get F5 Details](docs/F5CertsCHILDGetF5Details.png) \* each JST is shown in order and is configured as above using the following steps:
-
-##### Transform bigip_cert_info to CertificateObjectList.jst
-
-This processes the output from each F5, filtering for certificates that match the criteria specified in the main workflow.
-
-| Name                | Location                     | Value         |
-| ------------------- | ---------------------------- | ------------- |
-| **bigip_cert_info** | Extract response from stdout | return_data   |
-| **expiryObject**    | job                          | expirtyObject |
-
-### Automation Catalog
-
-Please ensure that all of the [workflows](#workflows) have been added before proceeding with Automation Catalog entries.
-
-1. Log into the IAP console and choose the 'Automation Catalog' from the menu.
-2. Select the six squares image icon from the 'Automations' section in left pane.
-
-   ![Six Squares](docs/common/catalogSix.png)
-
-3. Choose the import icon. Select all automations in the 'catalog' directory. Each should be imported.
-
-   ![Import Automations](docs/common/importAutomations.png)
-
-4. Open one of the Automations and press the 'New Form' button.
-
-   ![New Form](docs/common/automationNewForm.png)
-
-5. Select the siz squares image icon from the 'Forms' section in the left pane.
-6. From the three dots, choose Import form(s).  Select all forms in the 'catalog/forms' directory.
-7.
-   ![Import Forms](docs/common/importForms.png)
-
-8. Return to the main menu by pressing the home icon in the top bar then choose the 'Automation Catalog' from the menu.
-9. Assign the specific Form to each Automation as detailed in the table below.  N.B. if the automation is not detailed bellow, it is assumed that there are no transforms.
-   1. Select the Automation from the 'Automations' pane on the left hand side.
-   2. Choose the form from the Form drop down menu in the centre pane.
-   3. Set a schedule if specified below.
-   4. Click 'Save'
-
-      | Automation Name | Form | Schedule |
-      | --------------- | ---- | -------- |
-      | **F5 Expiring Certificates** | F5Certs: Catalog Form | **Run At:** 06:00:00 AM<br>**Repeat:** Monthly<br>---<br>**Days:** 90 <br> **TO:** email address <br> **CC:** email address|
+All the above workflows are invoked via a mini app called WorkflowRunner sitting in between the Itential IAP system and the actual caller. This provides a controlled access of the workflows without dealing with complex multi-factor/ Azure Authentication layer. This is a common utility used for many projects including this one.
